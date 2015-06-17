@@ -78,7 +78,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="createAccount.cpp" />
+    <ClCompile Include="deposit.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="totalBalances.cpp" />
+    <ClCompile Include="withdrawl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="createAccount.h" />
+    <ClInclude Include="deposit.h" />
+    <ClInclude Include="totalBalances.h" />
+    <ClInclude Include="withdrawl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
