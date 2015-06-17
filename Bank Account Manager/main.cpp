@@ -21,6 +21,7 @@ void createAccount(Account customers[], int numPeople_in);
 void ShowMenu();
 void deposit(Account customers[], int numPeople_in);
 void viewInfo(Account customers[], int numPeople);
+void withdrawl(Account customers[], int numPeople_in);
 
 int main()
 {
@@ -37,17 +38,16 @@ int main()
 			++numPeople;
 		}
 		if (choice == 2)
-		{
 			deposit(customers, numPeople);
-		}
+
+		if (choice == 3)
+			withdrawl(customers, numPeople);
+
 		if (choice == 4)
-		{
 			viewInfo(customers, numPeople);
-		}
+
 		if (choice == 5)
-		{
 			return 0;
-		}
 	}
 }
 
@@ -101,13 +101,27 @@ void deposit(Account customers[], int numPeople_in)
 	cout << endl;
 }
 
+void withdrawl(Account customers[], int numPeople_in)
+{
+	cout << "[Withdrawl]" << endl;
+	int accID;
+	cout << "Account ID: "; cin >> accID;
+	int withdrawl;
+	cout << "Withdrawl amount: $"; cin >> withdrawl;
+	for (int i = 0; i < numPeople_in; ++i)
+	{
+		if (customers[i].accountID == accID)
+			customers[i].balance -= withdrawl;
+	}
+
+}
 void viewInfo(Account customers[], int numPeople)
 {
 	for (int i = 0; i < numPeople; ++i)
 	{
 		cout << "Account ID: " << customers[i].accountID << endl;
 		cout << "Name: " << customers[i].cusName << endl;
-		cout << "Balance: " << customers[i].balance << endl;
+		cout << "Balance: $" << customers[i].balance << endl;
 		cout << endl << endl;
 	}
 
