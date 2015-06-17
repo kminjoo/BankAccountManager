@@ -17,13 +17,14 @@ public:
 	Account() : accountID(0), balance(0) {}
 };
 
-void createAccount(Account customers[]);
+void createAccount(Account customers[], int numPeople_in);
 void ShowMenu();
-
+void deposit(Account customers[], int numPeople_in);
+void viewInfo(Account customers[], int numPeople);
 
 int main()
 {
-	
+	int numPeople = 0;
 	Account customers[100];
 	
 	while (1){
@@ -32,7 +33,16 @@ int main()
 		cin >> choice;
 		if (choice == 1)
 		{
-			createAccount(customers);
+			createAccount(customers, numPeople);
+			++numPeople;
+		}
+		if (choice == 2)
+		{
+			deposit(customers, numPeople);
+		}
+		if (choice == 4)
+		{
+			viewInfo(customers, numPeople);
 		}
 		if (choice == 5)
 		{
@@ -53,7 +63,7 @@ void ShowMenu()
 }
 
 
-void createAccount(Account customers[])
+void createAccount(Account customers[], int numPeople_in)
 {
 	int accountID_in;
 	string name_in;
@@ -65,8 +75,40 @@ void createAccount(Account customers[])
 	cout << "Deposit Amount: $"; cin >> balance_in;
 	cout << endl; 
 
-	customers[accountID_in].accountID = accountID_in;
-	customers[accountID_in].cusName =  name_in;
-	customers[accountID_in].balance = balance_in;
+	customers[numPeople_in].accountID = accountID_in;
+	customers[numPeople_in].cusName = name_in;
+	customers[numPeople_in].balance += balance_in;
+	
+}
+
+void deposit(Account customers[], int numPeople_in)
+{
+	int accID_in;
+	int deposit;
+	cout << "[Deposit]" << endl;
+	cout << "Account ID: "; cin >> accID_in;
+	cout << "Deposit amount: $"; cin >> deposit;
+
+	for (int i = 0; i < numPeople_in; ++i)
+	{
+		if (customers[i].accountID == accID_in)
+		{
+			customers[i].balance += deposit;
+		}
+	}
+
+	cout << endl;
+	cout << endl;
+}
+
+void viewInfo(Account customers[], int numPeople)
+{
+	for (int i = 0; i < numPeople; ++i)
+	{
+		cout << "Account ID: " << customers[i].accountID << endl;
+		cout << "Name: " << customers[i].cusName << endl;
+		cout << "Balance: " << customers[i].balance << endl;
+		cout << endl << endl;
+	}
 
 }
