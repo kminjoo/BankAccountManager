@@ -5,6 +5,7 @@
 */
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Account
@@ -12,7 +13,7 @@ class Account
 public:
 	int accountID;
 	int balance;
-	char cusName[100];
+	string cusName;
 	Account() : accountID(0), balance(0) {}
 };
 
@@ -48,16 +49,17 @@ void ShowMenu()
 void createAccount(Account customers[])
 {
 	int accountID_in;
-	char name[100];
+	string name_in;
 	int balance_in;
 
 	cout << "[Create a New Account]" << endl;
+	cout << "Name: "; cin >> name_in;
 	cout << "Account ID: "; cin >> accountID_in;
-	cout << "Name: "; cin >> name;
-	cout << "Deposit Ammount: "; cin >> balance_in;
-	cout << endl;
+	cout << "Deposit Amount: "; cin >> balance_in;
+	cout << endl; 
+
 	customers[accountID_in].accountID = accountID_in;
-	strcpy_s(customers[accountID_in].cusName, name);
+	customers[accountID_in].cusName =  name_in;
 	customers[accountID_in].balance = balance_in;
 
 }
