@@ -37,17 +37,19 @@ int main()
 			createAccount(customers, numPeople);
 			++numPeople;
 		}
-		if (choice == 2)
+		else if (choice == 2)
 			deposit(customers, numPeople);
 
-		if (choice == 3)
+		else if (choice == 3)
 			withdrawl(customers, numPeople);
 
-		if (choice == 4)
+		else if (choice == 4)
 			viewInfo(customers, numPeople);
 
-		if (choice == 5)
+		else if (choice == 5)
 			return 0;
+		else
+			cout << "Wrong choice!! " << endl;
 	}
 }
 
@@ -66,11 +68,12 @@ void ShowMenu()
 void createAccount(Account customers[], int numPeople_in)
 {
 	int accountID_in;
-	string name_in;
+	char name_in[100];
 	int balance_in;
 
 	cout << "[Create a New Account]" << endl;
-	cout << "Name: "; cin >> name_in;
+	cin.ignore();
+	cout << "Name: "; cin.getline(name_in,100);
 	cout << "Account ID: "; cin >> accountID_in;
 	cout << "Deposit Amount: $"; cin >> balance_in;
 	cout << endl; 
