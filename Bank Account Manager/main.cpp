@@ -23,14 +23,21 @@ void ShowMenu();
 
 int main()
 {
-	ShowMenu();
-	int choice;
-	cin >> choice;
+	
 	Account customers[100];
 	
-	if (choice == 1)
-	{
-		createAccount(customers);
+	while (1){
+		ShowMenu();
+		int choice;
+		cin >> choice;
+		if (choice == 1)
+		{
+			createAccount(customers);
+		}
+		if (choice == 5)
+		{
+			return 0;
+		}
 	}
 }
 
@@ -55,7 +62,7 @@ void createAccount(Account customers[])
 	cout << "[Create a New Account]" << endl;
 	cout << "Name: "; cin >> name_in;
 	cout << "Account ID: "; cin >> accountID_in;
-	cout << "Deposit Amount: "; cin >> balance_in;
+	cout << "Deposit Amount: $"; cin >> balance_in;
 	cout << endl; 
 
 	customers[accountID_in].accountID = accountID_in;
