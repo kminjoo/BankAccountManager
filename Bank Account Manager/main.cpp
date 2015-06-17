@@ -28,28 +28,31 @@ int main()
 	int numPeople = 0;
 	Account customers[100];
 	
+	enum {MAKE = 1, DEPOSIT, WITHDRAW, INQUIRE, EXIT};
 	while (1){
 		ShowMenu();
 		int choice;
 		cin >> choice;
-		if (choice == 1)
+
+		switch (choice)
+		{
+		case MAKE:
 		{
 			createAccount(customers, numPeople);
 			++numPeople;
+			break;
 		}
-		else if (choice == 2)
-			deposit(customers, numPeople);
-
-		else if (choice == 3)
-			withdrawl(customers, numPeople);
-
-		else if (choice == 4)
-			viewInfo(customers, numPeople);
-
-		else if (choice == 5)
+		case DEPOSIT:
+			deposit(customers, numPeople); break;
+		case WITHDRAW:
+			withdrawl(customers, numPeople); break;
+		case INQUIRE:
+			viewInfo(customers, numPeople); break;
+		case EXIT:
 			return 0;
-		else
-			cout << "Wrong choice!! " << endl;
+		default:
+			cout << "Illegal selection." << endl; 
+		}
 	}
 }
 
@@ -90,16 +93,18 @@ void deposit(Account customers[], int numPeople_in)
 	int deposit;
 	cout << "[Deposit]" << endl;
 	cout << "Account ID: "; cin >> accID_in;
-	cout << "Deposit amount: $"; cin >> deposit;
 
 	for (int i = 0; i < numPeople_in; ++i)
 	{
 		if (customers[i].accountID == accID_in)
-		{
+		{	
+			cout << "Deposit amount: $"; cin >> deposit;
 			customers[i].balance += deposit;
+			cout << "Desposited successfully." << endl;
+			return;
 		}
 	}
-	cout << "Desposited successfully.";
+	cout << "ID not found.";
 	cout << endl;
 	cout << endl;
 }
@@ -110,13 +115,17 @@ void withdrawl(Account customers[], int numPeople_in)
 	int accID;
 	cout << "Account ID: "; cin >> accID;
 	int withdrawl;
-	cout << "Withdrawl amount: $"; cin >> withdrawl;
 	for (int i = 0; i < numPeople_in; ++i)
 	{
 		if (customers[i].accountID == accID)
+		{
+			cout << "Withdrawl amount: $"; cin >> withdrawl;
 			customers[i].balance -= withdrawl;
+			cout << "Withdrawn successfully." << endl;
+			return;
+		}
 	}
-	cout << "Withdrawn successfully.";
+	cout << "ID not found" << endl;
 
 }
 void viewInfo(Account customers[], int numPeople)
