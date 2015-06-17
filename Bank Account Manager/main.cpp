@@ -99,7 +99,7 @@ void deposit(Account customers[], int numPeople_in)
 			customers[i].balance += deposit;
 		}
 	}
-
+	cout << "Desposited successfully.";
 	cout << endl;
 	cout << endl;
 }
@@ -116,6 +116,7 @@ void withdrawl(Account customers[], int numPeople_in)
 		if (customers[i].accountID == accID)
 			customers[i].balance -= withdrawl;
 	}
+	cout << "Withdrawn successfully.";
 
 }
 void viewInfo(Account customers[], int numPeople)
